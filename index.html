@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- PWA / Installation -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="theme-color" content="#0a0e17" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Transfo 1 An" />
+
+    <!-- iOS (iPhone) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Transfo 1 An" />
+    <link rel="apple-touch-icon" href="./icons/icon-512.png" />
+
+    <!-- Favicon (SVG inline : haltère) -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0e17'/%3E%3Cg fill='none' stroke='%2334d399' stroke-width='5' stroke-linecap='round'%3E%3Cline x1='22' y1='32' x2='42' y2='32'/%3E%3Cline x1='22' y1='24' x2='22' y2='40'/%3E%3Cline x1='42' y1='24' x2='42' y2='40'/%3E%3Cline x1='15' y1='27' x2='15' y2='37'/%3E%3Cline x1='49' y1='27' x2='49' y2='37'/%3E%3C/g%3E%3C/svg%3E"
+    />
+
+    <meta name="description" content="Suivi annuel de transformation : santé, poids, anglais et e-commerce. Installable sur mobile et utilisable hors-ligne." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Suivi Transformation 1 An · Santé · Anglais · Business</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Enregistrement du Service Worker (application installable + hors-ligne).
+      // Ne s'exécute que sur http/https (jamais en local file://).
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(
+            function (err) {
+              console.warn("SW non enregistré :", err);
+            }
+          );
+        });
+      }
+    </script>
+  </body>
+</html>
